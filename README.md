@@ -87,7 +87,7 @@ Visit http://localhost:3000 → redirects to /login → sign up → /dashboard.
 
 | Variable | Description | Example |
 |---|---|---|
-| `NEXT_PUBLIC_API_URL` | Backend API base URL | `http://localhost:4000/api` |
+| `BACKEND_URL` | Backend API base URL | `http://localhost:4000` |
 
 ## API Reference
 
@@ -127,17 +127,3 @@ Visit http://localhost:3000 → redirects to /login → sign up → /dashboard.
 |---|---|---|---|
 | GET | `/stats` | Member | Total tasks, by-status counts, overdue count, tasks per user |
 
-## API Response Shape
-
-All responses follow:
-```json
-{ "success": true, "data": { ... } }
-{ "success": false, "error": "message" }
-```
-
-## RBAC Rules
-
-- Roles (`ADMIN` / `MEMBER`) are **per-project**, stored in `ProjectMember`
-- A user can be ADMIN in project A and MEMBER in project B
-- **ADMIN**: full CRUD on tasks, project settings, and members
-- **MEMBER**: read-only on projects; can update **status** on tasks assigned to them
