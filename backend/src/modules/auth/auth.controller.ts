@@ -4,12 +4,10 @@ import { signup, login, getMe } from './auth.service'
 import { sendSuccess, sendError } from '../../utils/response'
 import type { AuthenticatedRequest } from '../../middleware/auth.middleware'
 
-const isProd = process.env['NODE_ENV'] === 'production'
-
 const COOKIE_OPTIONS = {
   httpOnly: true,
-  secure: isProd,
-  sameSite: (isProd ? 'none' : 'lax') as 'none' | 'lax',
+  secure: process.env['NODE_ENV'] === 'production',
+  sameSite: 'lax' as const,
   maxAge: 7 * 24 * 60 * 60 * 1000,
 }
 
